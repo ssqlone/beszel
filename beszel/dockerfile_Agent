@@ -13,7 +13,9 @@ ARG TARGETOS TARGETARCH
 RUN CGO_ENABLED=0 GOGC=75 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -ldflags "-w -s" -o /agent ./cmd/agent
 
 # ? -------------------------
-FROM scratch
+FROM alpine:latest
+
+RUN apk add --no-cache bash curl busybox-extras bind-tools
 
 COPY --from=builder /agent /agent
 
