@@ -24,18 +24,6 @@ jobs:
             registry: docker.io
             username_secret: DOCKERHUB_USERNAME
             password_secret: DOCKERHUB_TOKEN
-          - image: ghcr.io/${{ github.repository }}/beszel
-            context: ./beszel
-            dockerfile: ./beszel/dockerfile_Hub
-            registry: ghcr.io
-            username: ${{ github.actor }}
-            password_secret: GITHUB_TOKEN
-          - image: ghcr.io/${{ github.repository }}/beszel-agent
-            context: ./beszel
-            dockerfile: ./beszel/dockerfile_Agent
-            registry: ghcr.io
-            username: ${{ github.actor }}
-            password_secret: GITHUB_TOKEN
     permissions:
       contents: read
       packages: write
