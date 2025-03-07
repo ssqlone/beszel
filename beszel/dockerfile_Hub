@@ -25,7 +25,9 @@ ARG TARGETOS TARGETARCH
 RUN CGO_ENABLED=0 GOGC=75 GOOS=$TARGETOS GOARCH=$TARGETARCH go build -ldflags "-w -s" -o /beszel ./cmd/hub
 
 # ? -------------------------
-FROM scratch
+FROM alpine:latest
+
+RUN apk add --no-cache bash curl busybox-extras bind-tools
 
 COPY --from=builder /beszel /
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
